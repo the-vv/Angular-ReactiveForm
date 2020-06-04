@@ -1,0 +1,84 @@
+
+<div class="container mt-5">
+    <button class="btn btn-success btn-sm text-white float-left m-sm-2" (click)="goBack()">Home</button> 
+    <button *ngIf="addType" class="btn btn-success btn-sm text-white float-right m-sm-2"  (click)="goToList()">Check Status</button>
+        <button *ngIf="!addType" class="btn btn-success btn-sm text-white float-right m-sm-2"  style="float:right;" (click)="goBack()">Go back</button>       
+    <h5 class="card-header bg-primary text-center rounded-top text-white">IOT System Sales and Registration
+    </h5>
+    <div class="card-body border border-secondary rounded-bottom text-black pl-5 pr-5">
+        <form *ngIf="addType" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >  
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="">Full Name</label>
+                    <input placeholder="Full Name" type="text" formControlName="Name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Name.errors }" />
+                </div>     
+                <div class="form-group col-md-8">
+                    <label for="">Email Id</label>
+                    <input placeholder="Email" type="text" formControlName="Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">System ID</label>
+                    <input placeholder="System ID" type="text" formControlName="id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.id.errors }" />
+                </div>     
+                <div class="form-group col-md-6">
+                    <label for="">Model Number</label>
+                    <input placeholder="Model" type="text" formControlName="model" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.model.errors }" />
+                </div>   
+                <div class="form-group col-md-3">
+                    <label for="">Date of Purchase</label>
+                    <input placeholder="Date" type="date" formControlName="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.date.errors }" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">Name of Company if any</label>
+                    <input placeholder="Company" type="text" formControlName="company" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" />
+                </div> 
+                <div class="form-group col-md-3">
+                    <label for="">Place</label>
+                    <input placeholder="Place" type="text" formControlName="place" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.place.errors }" />
+                 </div>          
+                <div class="form-group col">
+                    <label for="exampleFormControlTextarea1">Your FeedBack</label>
+                    <textarea formControlName="feedback" class="form-control" rows="4" placeholder="Enter feedback here"></textarea>
+                </div>
+            </div>            
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Register</button>
+                <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+            </div>
+        </form>
+        <form *ngIf="!addType">
+            <div *ngFor="let item of items" class="form-group ">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Name:</label>
+                    </div>
+                    <div class="form-group col">
+                        <label>{{item.value.Name}}</label>
+                    </div>               
+                    <div class="form-group col">
+                        <label>Email:</label>
+                    </div>
+                    <div class="form-group col">
+                        <label>{{item.value.Email}}</label>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>System ID:</label>
+                    </div>
+                    <div class="form-group col">
+                        <label>{{item.value.id}}</label>
+                    </div>
+                    <div class="form-group col">
+                        <label>Model Number:</label>
+                    </div>
+                    <div class="form-group col">
+                        <label>{{item.value.model}}</label>
+                    </div>
+                </div>
+                <hr/>
+            </div>
+        </form>
+    </div>
+</div>
